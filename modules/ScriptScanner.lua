@@ -23,7 +23,7 @@ local function scan(query)
                 not scripts[script] and 
                 script:IsA("LocalScript") and 
                 script.Name:lower():find(query) and
-                (success or result:match('bytecode')) and
+                (success and not result:match('bytecode')) and
                 pcall(function() getsenv(script) end)
             then
                 scripts[script] = LocalScript.new(script)
